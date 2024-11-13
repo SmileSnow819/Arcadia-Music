@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [{ "path": "./tsconfig.node.json" }, { "path": "./tsconfig.web.json" }],
+  "compilerOptions": {  
+    "module": "es6",  
+    "target": "es6",  
+    "esModuleInterop": true,  
+  }  
+}

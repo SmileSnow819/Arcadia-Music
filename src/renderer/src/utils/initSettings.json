@@ -1,0 +1,94 @@
+{
+  "volume": 100,
+  "playMode": 0,
+  "imgDir": "",
+  "tracksDir": "",
+  "downloadQuality": "lossless",
+  "playQuality": "lossless",
+  "homePage": "local",
+  "behaviorWhenClose": "query",
+  "theme": {
+    "darkMode": false,
+    "autoColor": true,
+    "deskLyricAutoColor": true,
+    "deskLyricFontColor": "#FFFFFF",
+    "deskLyricSize": 2,
+    "colors": {
+      "background": "#121212",
+      "surface": "#212121",
+      "primary": "#2196F3",
+      "secondary": "#54B6B2",
+      "on-background": "#FFFFFF",
+      "on-surface": "#FFFFFF"
+    },
+    "customThemes": [],
+    "presetThemes": [
+      {
+        "name": "咖啡",
+        "colors": {
+          "background": "#F5E3E2",
+          "surface": "#ECCCC3",
+          "primary": "#D84315",
+          "secondary": "#EF6C00",
+          "on-background": "#442C2E",
+          "on-surface": "#442C2E"
+        }
+      },
+      {
+        "name": "绿色",
+        "colors": {
+          "background": "#A4D4B6",
+          "surface": "#43A77E",
+          "primary": "#FD5523",
+          "secondary": "#EF6C00",
+          "on-background": "#274B40",
+          "on-surface": "#274B40"
+        }
+      },
+      {
+        "name": "蓝色",
+        "colors": {
+          "background": "#D1E5F4",
+          "surface": "#A7CEF1",
+          "primary": "#D84315",
+          "secondary": "#EF6C00",
+          "on-background": "#232E3E",
+          "on-surface": "#232E3E"
+        }
+      },
+      {
+        "name": "粉色",
+        "colors": {
+          "background": "#FFD6E4",
+          "surface": "#FFC3D7",
+          "primary": "#C62828",
+          "secondary": "#F57C00",
+          "on-background": "#880E4F",
+          "on-surface": "#880E4F"
+        }
+      },
+      {
+        "name": "紫色",
+        "colors": {
+          "background": "#310A61",
+          "surface": "#491D81",
+          "primary": "#FF6F00",
+          "secondary": "#1B5E20",
+          "on-background": "#FFFFFF",
+          "on-surface": "#FFFFFF"
+        }
+      },
+      {
+        "name": "红色",
+        "colors": {
+          "background": "#661010",
+          "surface": "#7C0C0C",
+          "primary": "#1A237E",
+          "secondary": "#1B5E20",
+          "on-background": "#FFFFFF",
+          "on-surface": "#FFFFFF"
+        }
+      }
+    ]
+  }
+}

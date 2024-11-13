@@ -1,0 +1,70 @@
+.background[data-v-c373fee9] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  z-index: -1;
+}
+.lyric-container[data-v-c373fee9] {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  -webkit-app-region: drag;
+  font-size: 2rem;
+}
+.lyric[data-v-c373fee9] {
+  box-sizing: border-box;
+  padding: 0% 3% 3% 30px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.options-container[data-v-c373fee9] {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.options[data-v-c373fee9] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-app-region: no-drag;
+}
+.options-icon[data-v-c373fee9] {
+  display: flex;
+  gap: 5px;
+  height: 26px;
+  padding-top: 4px;
+  width: 150px;
+  align-items: center;
+}
+.option[data-v-c373fee9] {
+  cursor: pointer;
+  height: 26px;
+  width: 26px;
+  position: relative;
+}
+.svg-icon[data-v-c373fee9] {
+  position: absolute;
+}
+.placeholder[data-v-c373fee9] {
+  flex: 1;
+  height: 100%;
+}
+.lyric-text[data-v-c373fee9] {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.app[data-v-d24d8ef0] {
+  user-select: none;
+  width: 100vw;
+  height: 100vh;
+}
