@@ -1,9 +1,12 @@
 {
   "name": "arcadia",
-  "version": "1.0.0",
-  "description": "A local and NetEase cloud player built using JavaScript, TypeScript, and Vue3",
+  "version": "0.1.0",
+  "description": "A local and netEaseCloud player built using JavaScript, TypeScript, and Vue3",
   "main": "./out/main/index.js",
-  "author": "",
+  "author": {
+    "name": "ShirahaYuki",
+    "email": "a2648525976@gmail.com"
+  },
   "homepage": "",
   "scripts": {
     "format": "prettier --write .",
@@ -27,6 +30,13 @@
     "compression": "maximum",
     "win": {
       "target": "nsis"
+    },
+    "linux": {
+      "target": "deb",
+      "category": "Utility",
+      "desktop": {
+        "Name": "Arcadia"
+      }
     },
     "nsis": {
       "oneClick": false,
