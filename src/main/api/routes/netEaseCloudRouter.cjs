@@ -142,6 +142,11 @@ import('./netEaseCloudAPI/other/vip_info_v2.cjs').then((api) => {
   const method = catchErr(api.fn)
   router.route(url).post(method)
 })
+import('./netEaseCloudAPI/other/comment.cjs').then((api) => {
+  const url = api.url
+  const method = catchErr(api.fn)
+  router.route(url).post(method)
+})
 
 import('./netEaseCloudAPI/playlist/playlist_create.cjs').then((api) => {
   const url = api.url
@@ -226,6 +231,11 @@ import('./netEaseCloudAPI/song/song_wiki.cjs').then((api) => {
   router.route(url).post(method)
 })
 import('./netEaseCloudAPI/song/song_order_update.cjs').then((api) => {
+  const url = api.url
+  const method = catchErr(api.fn)
+  router.route(url).post(method)
+})
+import('./netEaseCloudAPI/song/song_comment.cjs').then((api) => {
   const url = api.url
   const method = catchErr(api.fn)
   router.route(url).post(method)

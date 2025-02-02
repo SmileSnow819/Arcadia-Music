@@ -19,6 +19,7 @@ declare global {
         song_like(id: number | string, like: boolean): Promise<any>
         song_detail(options: object): Promise<any>
         song_order_update(pid: number, ids: number[]): Promise<any>
+        song_comments(options: object): Promise<any>
         artist_songs(options: object): Promise<any>
         artist_albums(options: object): Promise<any>
         artist_detail(options: object): Promise<any>
@@ -35,6 +36,7 @@ declare global {
         search(options: object): Promise<any>
         search_suggest(keywords: string): Promise<any>
         fm(): Promise<any>
+        comments(options: object): Promise<any>
       }
     }
     utils: {

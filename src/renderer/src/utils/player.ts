@@ -81,13 +81,14 @@ class Player {
     })
     window.electron.ipcRenderer.on('next-song', (_event: any) => {
       if (this.playMode === PlayerMode.Fm) {
-        this.getFmTrack()
+        if (this.currentIndex.value == 0) this.getFmTrack()
+        else this.prePlay()
       } else {
         this.nextPlay()
       }
     })
     window.electron.ipcRenderer.on('pre-song', (_event: any) => {
-      this.prePlay()
+      (this.playMode === PlayerMode.Fm)?this.nextPlay():this.prePlay()
     })
     window.electron.ipcRenderer.on('lyric-window-play-state', (_event: any, state: boolean) => {
       this.pause(!state)

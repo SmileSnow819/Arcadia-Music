@@ -21,6 +21,7 @@ export const useStateStore = defineStore('state', {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
-    }
+    },
+    recentPlay: shallowReactive([]) as ShallowReactive<Array<any>>
   })
 })

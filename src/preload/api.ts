@@ -61,6 +61,9 @@ const netEaseCloud = {
   async song_detail(options: object): Promise<any> {
     return await this.request(this.baseUrl + '/netEaseCloud/song/detail', options)
   },
+  async song_comments(options: object): Promise<any> {
+    return await this.request(this.baseUrl + '/netEaseCloud/song/comments', options)
+  },
   async artist_detail(options: object): Promise<any> {
     return await this.request(this.baseUrl + '/netEaseCloud/artist', options)
   },
@@ -109,6 +112,9 @@ const netEaseCloud = {
   async fm(): Promise<any> {
     return await this.request(this.baseUrl + '/netEaseCloud/fm', {})
   },
+  async comments(options: object): Promise<any> {
+    return await this.request(this.baseUrl + '/netEaseCloud/comments', options)
+  }
 }
 export const api = {
   netEaseCloud

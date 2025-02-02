@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-  import { inject } from 'vue'
+  import { inject, ref, onBeforeUnmount } from 'vue'
   import type Player from '@renderer/utils/player'
   import { type Setting } from '@renderer/utils/setting'
   import { useStateStore } from './store/stateStore'
@@ -27,9 +27,81 @@
   const stateStore = useStateStore()
   const player = inject('player') as Player
   const globalSetting = inject('setting') as Setting
+  const baseURL = globalSetting.settings.tracksDir
   player.volume = globalSetting.settings.volume
   player.playMode = globalSetting.settings.playMode
+
   userStore.getNetEaseCloudAccount()
+  const currentTrack = player.currentTrack
+  const state = ref(player.getPlayState())
+  //初始化最近播放列表
+  async function init() {
+    const tracksList = (await window.electron.ipcRenderer.invoke(
+      'store-get',
+      'recentPlay'
+    )) as any[]
+    if (tracksList.length === 0) return
+    const localTracks = tracksList.filter((track) => track.local)
+    const netEaseTracks = tracksList.filter((track) => !track.local)
+    let localTracksData = [] as any[]
+    let netEaseTracksData = [] as any[]
+    if (localTracks.length !== 0) {
+      localTracksData = await window.electron.ipcRenderer.invoke(
+        'read-music-data',
+        baseURL,
+        localTracks.map((item: any) => item.id)
+      )
+      localTracksData.forEach((track: any) => {
+        track.al.picUrl = URL.createObjectURL(new Blob(track.al.picUrl))
+      })
+    }
+    if (netEaseTracks.length !== 0) {
+      const ids = netEaseTracks.map((item: any) => {
+        return {
+          id: item.id
+        }
+      })
+      netEaseTracksData = (await window.api.netEaseCloud.song_detail({ ids })).songs
+    }
+
+    const recentPlay = tracksList.map((trackInfo: any) => {
+      if (trackInfo.local) {
+        return localTracksData.find((item: any) => item.path === trackInfo.id)
+      } else {
+        return netEaseTracksData.find((item: any) => item.id === trackInfo.id)
+      }
+    })
+    stateStore.recentPlay.unshift(...recentPlay)
+  }
+  init()
+  function FPlayStateChange(isPlaying) {
+    isPlaying ? (state.value = 1) : (state.value = 0)
+    if (currentTrack.value.name && isPlaying) {
+      stateStore.tip = '播放：' + currentTrack.value.name
+      if (stateStore.recentPlay[0].id == currentTrack.value.id) return
+      if (stateStore.recentPlay.length == 100) {
+        stateStore.recentPlay.pop()
+        stateStore.recentPlay.unshift(Object.assign({}, currentTrack.value))
+      } else {
+        stateStore.recentPlay.unshift(Object.assign({}, currentTrack.value))
+      }
+      window.electron.ipcRenderer.invoke(
+        'store-set',
+        'recentPlay',
+        stateStore.recentPlay.map((track) => {
+          return {
+            id: track.local ? track.path : track.id,
+            local: track.local || false
+          }
+        })
+      )
+    }
+  }
+  const ids = player.onPlay(FPlayStateChange)
+  onBeforeUnmount(() => {
+    player.removeOnPlay(ids)
+  })
+
   //如果有自定义背景图片，加载图像
   if (globalSetting.settings.imgDir) {
     stateStore.background.background = 'none'

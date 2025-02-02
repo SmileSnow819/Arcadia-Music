@@ -50,7 +50,6 @@
   const currentTrack = player.currentTrack
   function FPlayStateChange(isPlaying) {
     isPlaying ? (state.value = 1) : (state.value = 0)
-    if (currentTrack.value.name && isPlaying) stateStore.tip = '播放：' + currentTrack.value.name
   }
   const ids = player.onPlay(FPlayStateChange)
   onBeforeUnmount(() => {
@@ -117,13 +116,18 @@
   }
   function FNextSong() {
     if (playMode.value === 3) {
-      player.getFmTrack()
+      if (player.currentIndex.value == 0) player.getFmTrack()
+      else player.prePlay()
     } else {
       player.nextPlay()
     }
   }
   function FPreviousSong() {
-    player.prePlay()
+    if (playMode.value === 3) {
+      player.nextPlay()
+    } else {
+      player.prePlay()
+    }
   }
   function FPlay() {
     player.pause(state.value)

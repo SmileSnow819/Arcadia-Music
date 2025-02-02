@@ -9,7 +9,7 @@
           <v-tab value="playlist">
             <v-icon icon="mdi-view-list"></v-icon>
           </v-tab>
-          <v-tab value="localOption">
+          <v-tab value="recentPlay">
             <v-icon icon="mdi-folder"></v-icon>
           </v-tab>
         </v-tabs>
@@ -21,8 +21,8 @@
         <v-tabs-window-item value="playlist" class="item">
           <UserPlaylist />
         </v-tabs-window-item>
-        <v-tabs-window-item value="localOption" class="item">
-          <LocalOption />
+        <v-tabs-window-item value="recentPlay" class="item">
+          <RecentPlay />
         </v-tabs-window-item>
       </v-tabs-window>
     </div>
@@ -39,7 +39,7 @@
   import UserPlaylist from './components/UserPlaylist.vue'
   import MiniLyric from './components/MiniLyric.vue'
   import { useStateStore } from '@renderer/store/stateStore'
-  import LocalOption from './components/LocalOption.vue'
+  import RecentPlay from './components/RecentPlay.vue'
   const stateStore = useStateStore()
   const tab = ref('nowPlaying')
 </script>
