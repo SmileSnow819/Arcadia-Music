@@ -115,19 +115,14 @@
     }
   }
   function FNextSong() {
-    if (playMode.value === 3) {
-      if (player.currentIndex.value == 0) player.getFmTrack()
-      else player.prePlay()
+    if (playMode.value === 3 && player.currentIndex.value == player.playlist.length - 1) {
+      player.getFmTrack()
     } else {
       player.nextPlay()
     }
   }
   function FPreviousSong() {
-    if (playMode.value === 3) {
-      player.nextPlay()
-    } else {
-      player.prePlay()
-    }
+    player.prePlay()
   }
   function FPlay() {
     player.pause(state.value)

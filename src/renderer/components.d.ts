@@ -15,7 +15,6 @@ declare module 'vue' {
     DeskLyric: typeof import('./src/components/publicComponents/DeskLyric.vue')['default']
     Frequency: typeof import('./src/components/playPage/Frequency.vue')['default']
     Local: typeof import('./src/components/setting/Local.vue')['default']
-    LocalOption: typeof import('./src/components/panel/components/LocalOption.vue')['default']
     LoginWYYDialogs: typeof import('./src/components/publicComponents/LoginWYYDialogs.vue')['default']
     Lyric: typeof import('./src/components/playPage/Lyric.vue')['default']
     Menu: typeof import('./src/components/navigator/components/Menu.vue')['default']

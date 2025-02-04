@@ -1,5 +1,5 @@
 import { Song } from './song'
-import { shallowReactive, ref } from 'vue'
+import { shallowReactive, ref, type ShallowReactive, type Ref } from 'vue'
 
 enum PlayerMode {
   Normal,
@@ -21,8 +21,8 @@ class Player {
   private _song: Song
   private _mediaAnalyser: AnalyserNode
   private playlistCopy: Array<any>
-  public playlist: any
-  public currentIndex: any
+  public playlist: ShallowReactive<Array<any>>
+  public currentIndex: Ref<number>
   private _analyserBuffer: Uint8Array
   public currentTrack: any
   public listID: string
@@ -80,15 +80,14 @@ class Player {
       this.pause(state)
     })
     window.electron.ipcRenderer.on('next-song', (_event: any) => {
-      if (this.playMode === PlayerMode.Fm) {
-        if (this.currentIndex.value == 0) this.getFmTrack()
-        else this.prePlay()
+      if (this.playMode === PlayerMode.Fm && this.currentIndex.value == (this.playlist.length-1)) {
+        this.getFmTrack()
       } else {
         this.nextPlay()
       }
     })
     window.electron.ipcRenderer.on('pre-song', (_event: any) => {
-      (this.playMode === PlayerMode.Fm)?this.nextPlay():this.prePlay()
+      this.prePlay()
     })
     window.electron.ipcRenderer.on('lyric-window-play-state', (_event: any, state: boolean) => {
       this.pause(!state)
@@ -125,7 +124,7 @@ class Player {
       await this.getBuffer()
     }
     const nextTrack = this.fmBuffer.splice(0, 1)[0]
-    this.prependTrack(nextTrack)
+    this.appendTrack(nextTrack)
     this.play(nextTrack.id)
   }
   public onFrequency(callback: (frequency: Uint8Array) => void, time = 50) {
@@ -171,6 +170,15 @@ class Player {
     if (!findTrack) {
       //如果没有，添加到队列最前端,否则什么也不做
       this.playlist.unshift(track)
+    }
+  }
+  public appendTrack(track: any): void {
+    const id = track.id
+    //查找播放列表是否有这首歌
+    const findTrack = this.playlist.find((item) => item.id == id)
+    if (!findTrack) {
+      //如果没有，添加到队列最后端,否则什么也不做
+      this.playlist.push(track)
     }
   }
   public play(id: string | number) {
