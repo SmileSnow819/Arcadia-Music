@@ -1,13 +1,5 @@
 <template>
   <div class="show-model-container">
-    <!-- <v-switch
-      class="switch-btn"
-      v-model="model"
-      hide-details
-      :color="stateStore.trackMainColor.color"
-      @click="switchModel"
-    ></v-switch> -->
-
     <v-tabs-window v-model="model">
       <v-tabs-window-item v-if="model === 'lyric'" value="lyric">
         <Lyric />
@@ -72,6 +64,6 @@
     height: 100%;
   }
   :deep(.v-tab.v-tab.v-btn) {
-    min-width: none;
+    min-width: 48px;
   }
 </style>

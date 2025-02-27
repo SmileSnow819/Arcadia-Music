@@ -17,6 +17,7 @@
             <v-tab value="playlists"> 收藏的歌单 </v-tab>
             <v-tab value="albums"> 收藏的专辑 </v-tab>
             <v-tab value="artists"> 收藏的歌手 </v-tab>
+            <v-tab value="record"> 听歌排行 </v-tab>
           </v-tabs>
         </template>
       </v-card>
@@ -116,6 +117,25 @@
             ></ArtistCard>
           </div>
         </v-tabs-window-item>
+        <v-tabs-window-item value="record" class="tab-window">
+          <div
+            :items="recordTotal"
+            @click="FClickTrack"
+            @contextmenu.prevent="FCopy"
+            class="infinite-scroll-container"
+          >
+            <SongCard :song="item.song" :index="index" v-for="(item, index) in recordTotal">
+              <template #index>
+                <div class="song-index">
+                  <span class="song-index-text">{{ index + 1 }}</span>
+                </div>
+              </template>
+              <div>
+                <div class="song-count-text">{{ item.playCount }}次</div>
+              </div>
+            </SongCard>
+          </div>
+        </v-tabs-window-item>
       </v-tabs-window>
     </div>
     <v-fab
@@ -132,13 +152,16 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, inject, shallowRef } from 'vue'
+  import { ref, inject, shallowRef, type ShallowRef } from 'vue'
   import { useUserStore } from '@renderer/store/userStore'
+  import { useStateStore } from '@renderer/store/stateStore'
   import PlaylistCard from '@renderer/components/publicComponents/PlaylistCard.vue'
   import type Player from '@renderer/utils/player'
   import AlbumCard from '@renderer/components/publicComponents/AlbumCard.vue'
   import ArtistCard from '@renderer/components/publicComponents/ArtistCard.vue'
   import { useRouter } from 'vue-router'
+  import SongCard from '@renderer/components/publicComponents/SongCard.vue'
+  const stateStore = useStateStore()
   const player = inject('player') as Player
   const router = useRouter()
   const user = useUserStore()
@@ -150,6 +173,7 @@
   ]
   const albumSubList = shallowRef([]) as any
   const artistSubList = shallowRef([]) as any
+  const recordTotal = shallowRef([]) as ShallowRef<Array<any>>
   function onIntersect(isIntersecting) {
     fab.value = isIntersecting
   }
@@ -159,6 +183,11 @@
   window.api.netEaseCloud.artist_subList().then((res) => {
     artistSubList.value = res.data
   })
+
+  window.api.netEaseCloud.user_record(user.netEaseCloud.profile.userId, 0).then((res) => {
+    recordTotal.value = res.allData
+  })
+
   function FPlayThisPlaylist(id) {
     if (player.listID === `playlist-${id}`) return
     window.api.netEaseCloud.playlist_detail({ id, limit: 1000, offset: 0 }).then((res) => {
@@ -224,6 +253,30 @@
       options.duration
     )
   }
+  function FClickTrack(event) {
+    if (event.target.hasAttribute('artist-id')) {
+      router.push({ name: 'artist', params: { id: event.target.getAttribute('artist-id') } })
+    } else if (event.target.hasAttribute('album-id')) {
+      router.push({ name: 'album', params: { id: event.target.getAttribute('album-id') } })
+    } else if (event.target.hasAttribute('img-id')) {
+      const trackID = parseInt(event.target.getAttribute('img-id') as string)
+      player.prependTrack(recordTotal.value.find((item) => item.song.id == trackID).song)
+      // //播放这首歌
+      player.play(trackID)
+    }
+  }
+  function FCopy(event) {
+    let text = ''
+    if (
+      event.target.hasAttribute('artist-id') ||
+      event.target.hasAttribute('song-name') ||
+      event.target.hasAttribute('album-id')
+    ) {
+      text = event.target.textContent
+      stateStore.tip = '复制：' + text
+      navigator.clipboard.writeText(text)
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -253,5 +306,23 @@
   .tab-window {
     width: 90%;
     margin: 0 auto;
+  }
+  .song-index {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+    transform: translate(-100%, 0%);
+    z-index: 100;
+  }
+  .song-index-text {
+    opacity: 0.6;
+  }
+  .song-count-text {
+    width: 4rem;
+    opacity: 0.5;
+    text-align: right;
   }
 </style>

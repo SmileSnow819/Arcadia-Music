@@ -100,6 +100,9 @@ const netEaseCloud = {
   async user_playlist(options: object): Promise<any> {
     return await this.request(this.baseUrl + '/netEaseCloud/user/playlist', options)
   },
+  async user_record(uid: number, type: number): Promise<any> {
+    return await this.request(this.baseUrl + '/netEaseCloud/user/record', { uid, type })
+  },
   async logout(): Promise<any> {
     return await this.request(this.baseUrl + '/netEaseCloud/logout', {})
   },

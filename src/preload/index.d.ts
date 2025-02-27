@@ -32,6 +32,7 @@ declare global {
         recommend_playlist(): Promise<any>
         user_account(): Promise<any>
         user_playlist(options: object): Promise<any>
+        user_record(url: number, type: number): Promise<any>
         logout(): Promise<any>
         search(options: object): Promise<any>
         search_suggest(keywords: string): Promise<any>

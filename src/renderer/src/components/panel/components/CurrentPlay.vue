@@ -123,6 +123,10 @@
           :text="stateStore.lockLyric ? '解锁歌词' : '锁定歌词'"
         ></v-tooltip>
       </v-btn>
+      <v-btn variant="text" rounded="lg" icon size="small" @click="FDownloadPage">
+        <v-icon icon="mdi-download"></v-icon>
+        <v-tooltip activator="parent" location="left" text="已下载"></v-tooltip>
+      </v-btn>
     </div>
     <CollectDialogs
       v-if="collect"
@@ -383,6 +387,9 @@
     if (!stateStore.openLyric) return
     stateStore.lockLyric = !stateStore.lockLyric
     window.electron.ipcRenderer.send('lock-lyric', stateStore.lockLyric)
+  }
+  function FDownloadPage() {
+    router.push({ name: 'download' })
   }
 </script>
 

@@ -1,6 +1,6 @@
 {
   "name": "arcadia",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A local and netEaseCloud player built using JavaScript, TypeScript, and Vue3",
   "main": "./out/main/index.js",
   "author": {
