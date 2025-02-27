@@ -146,7 +146,7 @@
       size="large"
       absolute
       color="secondary"
-      @click="goTo(0, { container: '.user-info', duration: 500 })"
+      @click="goTo(0, { container: '.account-info', duration: 100 })"
     ></v-fab>
   </div>
 </template>
