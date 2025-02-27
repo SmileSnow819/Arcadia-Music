@@ -40,7 +40,7 @@
       'store-get',
       'recentPlay'
     )) as any[]
-    if (tracksList.length === 0) return
+    if (!tracksList) return
     const localTracks = tracksList.filter((track) => track.local)
     const netEaseTracks = tracksList.filter((track) => !track.local)
     let localTracksData = [] as any[]
@@ -78,7 +78,8 @@
     isPlaying ? (state.value = 1) : (state.value = 0)
     if (currentTrack.value.name && isPlaying) {
       stateStore.tip = '播放：' + currentTrack.value.name
-      if (stateStore.recentPlay[0].id == currentTrack.value.id) return
+      if (stateStore.recentPlay.length > 0 && stateStore.recentPlay[0].id == currentTrack.value.id)
+        return
       if (stateStore.recentPlay.length == 100) {
         stateStore.recentPlay.pop()
         stateStore.recentPlay.unshift(Object.assign({}, currentTrack.value))

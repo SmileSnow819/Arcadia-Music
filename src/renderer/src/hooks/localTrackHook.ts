@@ -324,16 +324,11 @@ const init = async (baseDir: string) => {
     playlists: [playlistInfo]
   })
   await window.electron.ipcRenderer.invoke('store-set', 'recentPlay', [])
+  await window.electron.ipcRenderer.invoke('store-set', 'recentPlay', [])
   await window.electron.ipcRenderer.invoke('store-set', id, playlistData)
   await window.electron.ipcRenderer.invoke('store-set', 'localTracksIndex.index', tracksIndex)
   for (const artistInfo of Object.values(artistMap)) {
-    await window.electron.ipcRenderer.invoke(
-      'store-set',
-      artistInfo.id,
-      artistInfo,
-      'artists',
-      true
-    )
+    await window.electron.ipcRenderer.invoke('store-set', artistInfo.id, artistInfo, 'artists')
   }
   for (const albumInfo of Object.values(albumsMap)) {
     await window.electron.ipcRenderer.invoke('store-set', albumInfo.id, albumInfo, 'albums')

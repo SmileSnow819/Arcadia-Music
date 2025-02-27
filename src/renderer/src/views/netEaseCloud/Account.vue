@@ -9,7 +9,7 @@
           <h1>{{ user.netEaseCloud.profile.nickname }}</h1>
         </template>
         <template #subtitle>
-          <h2>{{ user.netEaseCloud.profile.signature }}</h2>
+          <h2 class="user-desc">{{ user.netEaseCloud.profile.signature }}</h2>
         </template>
         <template #actions>
           <v-tabs v-model="tab" color="pink">
@@ -324,5 +324,15 @@
     width: 4rem;
     opacity: 0.5;
     text-align: right;
+  }
+  .user-desc {
+    text-wrap: wrap;
+    white-space: wrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* 限制显示的行数 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 在最后一行使用省略号 */
+    word-wrap: break-word; /* 确保长单词或URL可以断开换行 */
   }
 </style>

@@ -8,8 +8,7 @@ import { browserICP } from './ipcMain'
 import Store from './store'
 import { createTray } from './tray'
 const store = new Store()
-server.listen(25976, '127.0.0.1')
-localServer.listen(26485, '127.0.0.1')
+
 let mainWindow: BrowserWindow
 function createWindow(): void {
   // Create the browser window.
@@ -35,7 +34,8 @@ function createWindow(): void {
     mainWindow.show()
   })
 
-  mainWindow.webContents.setWindowOpenHandler((details) => {mainWindow
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    mainWindow
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
@@ -149,7 +149,8 @@ if (!gotTheLock) {
       mainWindow.focus()
     }
   })
-
+  server.listen(25976, '127.0.0.1')
+  localServer.listen(26485, '127.0.0.1')
   app.whenReady().then(() => {
     electronApp.setAppUserModelId('com.arcadia')
     app.on('browser-window-created', (_, window) => {
