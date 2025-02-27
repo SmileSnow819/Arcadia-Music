@@ -18,7 +18,7 @@
 ### 图片背景
 - 支持选喜欢的图像当作背景，但注意此时背景色将失效
 - 注意！设置后请不要删除本地图片
-![image](https://github.com/user-attachments/assets/d6350947-9ce6-4d72-9545-733176e6cbd1)
+![image](https://github.com/user-attachments/assets/c737402e-8842-4595-aa07-2fa70f8b57cf)
 ![image](https://github.com/user-attachments/assets/3149caee-4729-42c0-be23-8ccaf8c3e910)
 ![image](https://github.com/user-attachments/assets/1e75fd67-1e88-4e2e-87e5-cf37dd8b1614)
 
@@ -29,7 +29,8 @@
 - 网易云评论功能
 ![image](https://github.com/user-attachments/assets/95f0c9f7-fe79-4767-a2c1-871b00063f16)
 ![image](https://github.com/user-attachments/assets/52f90169-b8dd-4c4c-884a-6ecdebab294b)
-![image](https://github.com/user-attachments/assets/2a3d2b9d-c848-448b-9dd8-f51c8f0b8e79)
+![image](https://github.com/user-attachments/assets/2244de00-8980-412a-955a-703833af9c12)
+
 ## 桌面歌词
 - 注意，在linux上由于桌面限制，锁定歌词后只能在主页面内解锁，在windows上没有此问题
 ![image](https://github.com/user-attachments/assets/2fe17da7-ebf1-425d-a6e5-1eed9359247f)
@@ -42,7 +43,8 @@
 
 ### 自动化分类并构建本地歌手与专辑界面
 - 自动化根据本地歌曲的信息分类并合并到同一专辑和艺术家，使用本地歌曲也能给你带来和网易云一样的体验
-![image](https://github.com/user-attachments/assets/ab764602-c579-437c-88e9-d6f8a9a90fb9)
+![image](https://github.com/user-attachments/assets/e18d59d3-f7f0-4e2d-a141-87a13114f440)
+
 
 ## 其他
 - 点击歌曲名即可进入专辑页面，点击歌手即可进入歌手页面，快速查看你喜欢的专辑和歌手
