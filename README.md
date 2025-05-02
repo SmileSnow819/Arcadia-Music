@@ -12,8 +12,6 @@
 ### 基于 Material UI六种主要颜色均可自定义
 - 如果你喜欢纯色风格，你可以自己选择自己喜欢的颜色搭配。同时，提供主题的六种颜色调色板，让你搭配自己喜欢的颜色
 ![image](https://github.com/user-attachments/assets/6d7e924e-8789-49a4-a62b-aac87918a848)
-![image](https://github.com/user-attachments/assets/cd9e70dd-12e3-4e10-a4dc-ef9cdcc5e982)
-![image](https://github.com/user-attachments/assets/41cafcbf-c010-41d2-886f-88c97fd6bea1)
 
 ### 图片背景
 - 支持选喜欢的图像当作背景，但注意此时背景色将失效
