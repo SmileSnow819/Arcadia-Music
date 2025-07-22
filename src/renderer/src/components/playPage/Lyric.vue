@@ -123,7 +123,6 @@
       }
     } else {
       lyricData = await window.api.netEaseCloud.song_lyric({ id: currentTrack.value.id })
-      console.log('网易云歌词数据:', lyricData)
     }
 
     time.push(0)
